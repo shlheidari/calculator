@@ -7,27 +7,27 @@
 <form action="calculate/" method="post">
 {% csrf_token %}
 your value:<br>
-<input type="text" name="first_num" , id="num" type="number" title="a number">
-<p id="p01"></p>
+<tr>
+<td>{{ first_num }}</td>
+</tr>
 <br> <br>
-{% csrf_token %}
+
 <label for="operator">Choose an operator:</label>
-{% csrf_token %}
+
 <select name="operator" id="operator">
   <option value="plus">+</option>
   <option value="minus">-</option>
   <option value="multiply">*</option>
   <option value="divide">/</option>
 </select>
-{% csrf_token %}
+
 <br> <br>
-{% csrf_token %}
+
 <input type="text" name="second_num" , id="num" type="number" title="a number">
 <p id="p01"></p>
 <br> <br>
-{% csrf_token %}
+
   <input type="submit" value="Calculate!" onclick="check_num()">
-{% csrf_token %}
 </form>
 
 <script>
@@ -51,6 +51,9 @@ function check_num() {
   {% endfor %}
 {% endif %}
 
+<p>
+<a href="clear/">clear</a>
+</p>
 
 </body>
 </html>
