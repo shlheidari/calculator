@@ -7,7 +7,7 @@
 <form action="calculate/" method="post">
 {% csrf_token %}
 your value:<br>
-<input type="text" name="first_num" , id="num" type="number" title="a number">
+<input  name="first_num" , id="num" type="number" step="any" title="a number" required>
 <p id="p01"></p>
 <br> <br>
 {% csrf_token %}
@@ -22,7 +22,7 @@ your value:<br>
 {% csrf_token %}
 <br> <br>
 {% csrf_token %}
-<input type="text" name="second_num" , id="num" type="number" title="a number">
+<input name="second_num" , id="num" type="number" step="any" title="a number" required>
 <p id="p01"></p>
 <br> <br>
 {% csrf_token %}
