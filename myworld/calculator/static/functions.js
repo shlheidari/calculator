@@ -2,7 +2,13 @@
 
 function num_editor(n) {
   let before = document.getElementById("p02").innerHTML
-  document.getElementById("p02").innerHTML = (before*10)+n;
+  n_str = n.toString();
+  if (before == 0) {
+    document.getElementById("p02").innerHTML = n;
+  } else {
+    document.getElementById("p02").innerHTML = before + n_str
+  }
+
 }
 
 function op_editor(o) {
@@ -16,9 +22,4 @@ function sub() {
   let second_num = document.getElementById("p02").innerHTML
   document.getElementById("second_num").value = second_num;
   document.getElementById('form').submit();
-}
-
-function decimal() {
-  let before = document.getElementById("p02").innerHTML
-  document.getElementById("p02").innerHTML = before+'.';
 }
