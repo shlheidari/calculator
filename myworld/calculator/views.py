@@ -8,23 +8,22 @@ def index(request):
   return HttpResponse(template.render({},request))
 
 def calculate(request):
-    global first_num, operator, second_num
+
     try:
         first_num = request.POST['first_num']
     except:
         a = 0
     operator = request.POST['operator']
     second_num = request.POST['second_num']
-    return HttpResponseRedirect(reverse('result'))
+    return HttpResponseRedirect(reverse('result',args=[first_num,operator, second_num]))
 
-def result(request):
+def result(request,first_num,operator,second_num):
   template = loader.get_template('answer.html')
-  global first_num, operator, second_num
   try:
-      if operator == 'plus' : answer = float(first_num) + float(second_num)
-      elif operator == 'minus' : answer = float(first_num) - float(second_num)
-      elif operator == 'multiply' :answer = float(first_num) * float(second_num)
-      elif operator == 'divide' : answer = float(first_num) / float(second_num)
+      if operator == '+' : answer = float(first_num) + float(second_num)
+      elif operator == '-' : answer = float(first_num) - float(second_num)
+      elif operator == '*' :answer = float(first_num) * float(second_num)
+      elif operator == '/' : answer = float(first_num) / float(second_num)
       first_num = answer
       context = {
         'first_num' : first_num
