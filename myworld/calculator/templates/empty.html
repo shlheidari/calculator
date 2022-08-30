@@ -2,15 +2,9 @@
 <html>
 
 <head>
-<style>
-  div {
-    background-color: lightgrey;
-    width: 50px;
-    border: 5px solid grey;
-    padding: 10px;
-    margin: 5px;
-  }
-</style>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <script src="{% static 'functions.js' %}"></script>
 </head>
 <body>
 
@@ -25,45 +19,24 @@
 <input id="second_num" name="second_num" hidden>
 
 <div id="p02" contenteditable="true"> 0 </div>
+<input type="button" value="c" onclick="history.go(0);">  <br>
 <input type="button" value="1" onclick="num_editor(1)">
 <input type="button" value="2" onclick="num_editor(2)">
 <input type="button" value="3" onclick="num_editor(3)">
-<input type="button" value="+" onclick="op_editor('+')"> <br>
+<input type="button" value="+" onclick="op_editor('plus')"> <br>
 <input type="button" value="4" onclick="num_editor(4)">
 <input type="button" value="5" onclick="num_editor(5)">
 <input type="button" value="6" onclick="num_editor(6)">
-<input type="button" value="-" onclick="op_editor('-')"> <br>
+<input type="button" value="-" onclick="op_editor('minus')"> <br>
 <input type="button" value="7" onclick="num_editor(7)">
 <input type="button" value="8" onclick="num_editor(8)">
 <input type="button" value="9" onclick="num_editor(9)">
-<input type="button" value="*" onclick="op_editor('*')"> <br>
+<input type="button" value="*" onclick="op_editor('multiply')"> <br>
 <input type="button" value="0" onclick="num_editor(0)">
-<input type="button" value="/" onclick="op_editor('/')">
+<input type="button" value="/" onclick="op_editor('devied')">
 <input type="button" value="=" onclick="sub()">
 </form>
 
-
-
-<script>
-
-function num_editor(n) {
-  let before = document.getElementById("p02").innerHTML
-  document.getElementById("p02").innerHTML = (before*10)+n;
-}
-
-function op_editor(o) {
-  let first_num = document.getElementById("p02").innerHTML
-  document.getElementById("p02").innerHTML = 0;
-  document.getElementById("first_num").value = first_num;
-  document.getElementById("operator").value = o;
-}
-
-function sub() {
-  let second_num = document.getElementById("p02").innerHTML
-  document.getElementById("second_num").value = second_num;
-  document.getElementById('form').submit();
-}
-</script>
 
 
 {% if messages %}
@@ -71,6 +44,7 @@ function sub() {
     {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
   {% endfor %}
 {% endif %}
+
 
 
 </body>

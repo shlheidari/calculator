@@ -2,60 +2,42 @@
 <html>
 
 <head>
-<style>
-div {
-  background-color: lightgrey;
-  width: 50px;
-  border: 5px solid grey;
-  padding: 10px;
-  margin: 5px;
-}
-</style>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <script src="{% static 'functions.js' %}"></script>
 </head>
-
 <body>
 
 <h1>calculator</h1>
 
-<form action="calculate/" method="post">
+<form action="calculate/" method="post" id="form">
+
 {% csrf_token %}
-your value:<br>
-<tr>
-<td>{{ first_num }}</td>
-</tr>
-<br> <br>
 
-<label for="operator">Choose an operator:</label>
-<select name="operator" id="operator">
-  <option value="plus">+</option>
-  <option value="minus">-</option>
-  <option value="multiply">*</option>
-  <option value="divide">/</option>
-</select>
+<input id="first_num" name=first_num hidden>
+<input id="operator" name="operator" hidden>
+<input id="second_num" name="second_num" hidden>
 
-<br> <br>
-
-<input name="second_num" , id="num" type="number" step="any" title="a number">
-<p id="p01"></p>
-<br> <br>
-
-  <input type="submit" value="Calculate!" onclick="check_num()">
+<div id="p02" contenteditable="true"> {{ first_num }} </div>
+<input type="button" value="c" onclick='location.href="clear/";'>  <br>
+<input type="button" value="1" onclick="num_editor(1)">
+<input type="button" value="2" onclick="num_editor(2)">
+<input type="button" value="3" onclick="num_editor(3)">
+<input type="button" value="+" onclick="op_editor('plus')"> <br>
+<input type="button" value="4" onclick="num_editor(4)">
+<input type="button" value="5" onclick="num_editor(5)">
+<input type="button" value="6" onclick="num_editor(6)">
+<input type="button" value="-" onclick="op_editor('minus')"> <br>
+<input type="button" value="7" onclick="num_editor(7)">
+<input type="button" value="8" onclick="num_editor(8)">
+<input type="button" value="9" onclick="num_editor(9)">
+<input type="button" value="*" onclick="op_editor('multiply')"> <br>
+<input type="button" value="0" onclick="num_editor(0)">
+<input type="button" value="." onclick="decimal()">
+<input type="button" value="/" onclick="op_editor('devied')">
+<input type="button" value="=" onclick="sub()">
 </form>
 
-<script>
-function check_num() {
-  const message = document.getElementById("p01");
-  message.innerHTML = "";
-  let x = document.getElementById("num").value;
-  try {
-    if(x == "")  throw "empty";
-    if(isNaN(x)) throw "not a number";
-  }
-  catch(err) {
-    message.innerHTML = "Input is " + err;
-  }
-}
-</script>
 
 {% if messages %}
   {% for message in messages %}
@@ -63,9 +45,7 @@ function check_num() {
   {% endfor %}
 {% endif %}
 
-<p>
-<a href="clear/">clear</a>
-</p>
+
 
 </body>
 </html>
